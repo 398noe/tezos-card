@@ -47,23 +47,25 @@ export const Profile = () => {
                     console.log("Not Found Card Data");
                     console.error(e);
                 });
-            console.log("cardData :", cardData);
-            // colorStringにも値を変換して格納
-            const colorNum = Number(cardData[1].c[0]);
-            const colorString = num2color(colorNum);
-            setColorString(colorString);
-            // 値をcardに格納
-            setCard((prev) => {
-                return {
-                    ...prev,
-                    name: "0x" + cardData[0],
-                    color: colorNum,
-                    domain: "0x" + cardData[2],
-                    handle_name: "0x" + cardData[3],
-                    email: "0x" + cardData[4],
-                    // sns
-                }
-            });
+            if (cardData) {
+                console.log("cardData :", cardData);
+                // colorStringにも値を変換して格納
+                const colorNum = Number(cardData[1].c[0]);
+                const colorString = num2color(colorNum);
+                setColorString(colorString);
+                // 値をcardに格納
+                setCard((prev) => {
+                    return {
+                        ...prev,
+                        name: "0x" + cardData[0],
+                        color: colorNum,
+                        domain: "0x" + cardData[2],
+                        handle_name: "0x" + cardData[3],
+                        email: "0x" + cardData[4],
+                        // sns
+                    }
+                });
+            }
             setIsLoading(false);
         }
     }
