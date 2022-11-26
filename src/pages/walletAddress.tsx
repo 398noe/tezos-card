@@ -3,20 +3,19 @@ import { useParams } from "react-router";
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import { TCard } from "../types/Card";
-import { decodeStr } from "../utils/convert";
+import { decodeStr, num2color } from "../utils/convert";
 
 export const WalletAddress = () => {
     const contractAddress: string = process.env.REACT_APP_CONTRACT_ADDRESS ?? "";
     const deployNetwork: string = process.env.REACT_APP_DEPLOY_NETWORK ?? "";
 
-    const [Tezos, setTezos] = useState<TezosToolkit>(
+    const [Tezos,] = useState<TezosToolkit>(
         new TezosToolkit(deployNetwork)
     );
     const { walletAddress } = useParams();
 
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [isReady, setIsReady] = useState<boolean>(false);
-    const [notFound, setNotFound] = useState<boolean>(false);
+    const [, setNotFound] = useState<boolean>(false);
 
     const [card, setCard] = useState<TCard>({
         name: "0xe5908de5898de69caae8a8ade5ae9a",
@@ -35,7 +34,7 @@ export const WalletAddress = () => {
 
             if (storage && walletAddress) {
                 const cardData: any = await storage.get(walletAddress)
-                    .catch((e) => {
+                    .catch(() => {
                         console.log("Not Found Card Data");
                         setNotFound(true);
                     });
@@ -60,6 +59,7 @@ export const WalletAddress = () => {
             }
         }
         exec();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
 
     return (
@@ -70,7 +70,7 @@ export const WalletAddress = () => {
                         <p>Loading...</p>
                     </div>
                 ) : (
-                    <Card name={decodeStr(card.name)} domain={decodeStr(card.domain)} email={decodeStr(card.email)} handle_name={decodeStr(card.handle_name)} />
+                    <Card name={decodeStr(card.name)} domain={decodeStr(card.domain)} email={decodeStr(card.email)} handle_name={decodeStr(card.handle_name)} color={num2color(card.color)} />
                 )
             }
         </div>

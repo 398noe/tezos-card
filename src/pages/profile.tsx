@@ -72,12 +72,14 @@ export const Profile = () => {
 
     useEffect(() => {
         updateData();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [storage]);
 
     useEffect(() => {
         if (loadingCardStore === false) {
             updateData();
         }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [loadingCardStore]);
 
     const handleInput = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -108,7 +110,7 @@ export const Profile = () => {
                 ...prev,
                 color: color2num(colorString)
             }
-        })
+        });
     }, [colorString]);
 
     useEffect(() => {
@@ -116,7 +118,7 @@ export const Profile = () => {
     }, [card]);
 
     return (
-        <div className="bg-white mx-auto min-h-screen px-4 py-32 flex flex-col items-center justify-center font-mono">
+        <div className="bg-white mx-auto min-h-screen px-4 py-32 flex flex-col items-center justify-center font-mono gap-y-4">
             <Connect
                 Tezos={Tezos} setContract={setContract}
                 deployNetwork={deployNetwork} contractAddress={contractAddress}
@@ -129,7 +131,7 @@ export const Profile = () => {
             {
                 beaconConnection ? (
                     <>
-                        <div className="w-full p-4 flex flex-col items-center justify-center">
+                        <div className="w-full p-4 gap-y-4 flex flex-col items-center justify-center">
                             {
                                 (isLoading || loadingCardStore) ? (
                                     <p>
@@ -141,8 +143,8 @@ export const Profile = () => {
                                     </p>
                                 ) : (
                                     <>
-                                        <p className="text-left">Preview Card</p>
-                                        <Card name={decodeStr(card.name)} domain={decodeStr(card.domain)} email={decodeStr(card.email)} handle_name={decodeStr(card.handle_name)} color={colorString}/>
+                                        <p>Card Preview</p>
+                                        <Card name={decodeStr(card.name)} domain={decodeStr(card.domain)} email={decodeStr(card.email)} handle_name={decodeStr(card.handle_name)} color={colorString} />
                                         <div className="p-4 flex flex-col gap-2">
                                             <div>
                                                 <span className="w-20 inline-block">Name: </span>
@@ -196,6 +198,15 @@ export const Profile = () => {
                                             card={card}
                                             loadingCardStore={loadingCardStore} setLoadingCardStore={setLoadingCardStore}
                                         />
+                                        <a
+                                            className="w-full flex items-center justify-center border-2 border-black bg-white px-8 py-4 font-mono font-bold shadow-[6px_6px_0_0_#000] transition hover:shadow-none focus:outline-none focus:ring"
+                                            href={userAddress}
+                                            target={"_blank"}
+                                            rel={"noreferrer"}
+                                        >
+                                            Share Link <span aria-hidden="true" className="ml-1.5" role="img">🔗</span>
+                                        </a>
+
                                     </>
 
                                 )
