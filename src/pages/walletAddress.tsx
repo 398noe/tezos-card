@@ -1,5 +1,5 @@
 import { BigMapAbstraction, TezosToolkit, WalletContract } from "@taquito/taquito";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
 import { TCard } from "../types/Card";
@@ -9,13 +9,16 @@ export const WalletAddress = () => {
     const contractAddress: string = process.env.REACT_APP_CONTRACT_ADDRESS ?? "";
     const deployNetwork: string = process.env.REACT_APP_DEPLOY_NETWORK ?? "";
 
+    // useNavigate if card not exist
+    const navigate = useNavigate();
+
     const [Tezos,] = useState<TezosToolkit>(
         new TezosToolkit(deployNetwork)
     );
     const { walletAddress } = useParams();
 
     const [isLoading, setIsLoading] = useState<boolean>(true);
-    const [, setNotFound] = useState<boolean>(false);
+    const [notFound, setNotFound] = useState<boolean>(false);
 
     const [card, setCard] = useState<TCard>({
         name: "0xe5908de5898de69caae8a8ade5ae9a",
@@ -59,8 +62,15 @@ export const WalletAddress = () => {
             }
         }
         exec();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+        // eslint-disable-next-line react-hooks/exhaustive-deps
     }, []);
+
+    useEffect(() => {
+        if (notFound === true) {
+            console.log("Redirect to not found");
+            navigate("/404");
+        }
+    }, [notFound])
 
     return (
         <div className="bg-white mx-auto max-w-xl text-center h-screen px-4 py-32 flex flex-col items-center justify-center font-mono">

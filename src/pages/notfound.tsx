@@ -12,7 +12,7 @@ export const NotFound: React.FC<notFoundProps> = (props: notFoundProps) => {
                 <p className="text-6xl font-bold pb-2">404</p>
                 <p>{message ?? "Your requested page is not exist..."}</p>
             </div>
-            <Button />
+             <Button link="/profile" message="Create New" icon="😎"/>
         </div>
     );
 }

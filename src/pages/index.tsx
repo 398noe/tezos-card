@@ -2,7 +2,7 @@ import Button from "../components/Button";
 import { ReactComponent as TezosIcon } from "../tezos.svg";
 
 export const Home = () => {
-    return (
+	return (
 		<div className="text-center w-full h-screen px-4 py-24 flex flex-col items-center justify-center">
 			<h1 className="text-3xl font-bold sm:text-5xl">
 				Create your profile card
@@ -16,7 +16,7 @@ export const Home = () => {
 			</p>
 
 			<div className="mt-8 flex flex-wrap justify-center gap-4">
-				<Button />
+				<Button link="/profile" message="Create New" icon="😎" />
 			</div>
 		</div>
 	);
