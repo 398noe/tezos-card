@@ -27,7 +27,7 @@ export const Profile = () => {
 
     const [card, setCard] = useState<TCard>({
         name: "0xe5908de5898de69caae8a8ade5ae9a",
-        color: 0,
+        color: 16777215,
         domain: "0xe68980e5b19ee69caae8a8ade5ae9a",
         email: "0xe383a1e383bce383abe382a2e38389e383ace382b9e69caae8a8ade5ae9a",
         handle_name: "0xe3838fe383b3e38389e383abe3838de383bce383a0e69caae8a8ade5ae9a",
@@ -142,7 +142,7 @@ export const Profile = () => {
                                 ) : (
                                     <>
                                         <p className="text-left">Preview Card</p>
-                                        <Card name={decodeStr(card.name)} domain={decodeStr(card.domain)} email={decodeStr(card.email)} handle_name={decodeStr(card.handle_name)} />
+                                        <Card name={decodeStr(card.name)} domain={decodeStr(card.domain)} email={decodeStr(card.email)} handle_name={decodeStr(card.handle_name)} color={colorString}/>
                                         <div className="p-4 flex flex-col gap-2">
                                             <div>
                                                 <span className="w-20 inline-block">Name: </span>
