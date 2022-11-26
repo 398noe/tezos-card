@@ -10,7 +10,7 @@ export const Footer = () => {
                 </div>
             </div>
             <div className="flex-0 font-mono items-center mr-4">
-                <a href="https://github.com/kotama7/web3.0_team2" target="_blank" rel="noreferrer">
+                <a href="https://github.com/398noe/tezos-card" target="_blank" rel="noreferrer">
                     <GitHubIcon className="w-8 h-full inline" />
                 </a>
             </div>
