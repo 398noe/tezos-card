@@ -23,7 +23,7 @@ export const Profile = () => {
     const [isLoading, setIsLoading] = useState<boolean>(true);
     const [loadingCardStore, setLoadingCardStore] = useState<boolean>(false);
 
-    const [colorString, setColorString] = useState<string>("#000000");
+    const [colorString, setColorString] = useState<string>("#ffffff");
 
     const [card, setCard] = useState<TCard>({
         name: "0xe5908de5898de69caae8a8ade5ae9a",
